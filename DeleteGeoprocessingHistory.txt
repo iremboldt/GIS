@@ -1,0 +1,17 @@
+import arcpy 
+from arcpy import env 
+import os
+from arcpy import metadata as md
+import xml.etree.ElementTree as ET
+env.workspace = r"C:\Users\User.Name\AppData\Roaming\Esri\ArcGISPro\Favorites\GIS.sde"
+path = r"C:\Users\User.Name\AppData\Roaming\Esri\ArcGISPro\Favorites\GIS.sde\feature"
+pathmd = md.Metadata(path)
+pathxml = pathmd.xml
+element = stringroot.find("Esri/DataProperties/lineage")
+if element is not None:
+    i = 0
+    children = element.findall("Process")
+    for child in children:
+        element.remove(child)
+        i += 1
+    print ("Removed "+i+"items(s) from Geoprocessing History")
